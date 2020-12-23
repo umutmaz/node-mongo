@@ -1,0 +1,429 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+      "title": "Shiftsoft",
+      "description": "API Documentations",
+      "version": "0.1.0"
+    },
+    "tags": [
+      {
+        "name": "Todo",
+        "description": "Todo Operations"
+      },
+      {
+        "name": "User",
+        "description": "User Operations"
+      }
+    ],
+    "paths": {
+      "/users":{
+        "get": {
+            "tags": ["User"],
+            "summary": "Get all the users in the system",
+            "operationId": "getAllUsers",
+            "responses": {
+              "200": {
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                          "message":{ "type": "string", "example": "Successful" },
+                        "data":{
+                            "type":"array",
+                            "items":{
+                              "type": "object",
+                              "properties": {
+                                "username": { "type": "string" }
+                              }
+                            }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "400": {
+                "message": "string",
+                "error": "object"
+              }
+            }
+          },
+          "post":{
+            "tags": ["User"],
+            "summary": "Create a new user",
+            "operationId": "createUser",
+            "requestBody": {
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "username": { "type": "string", "required":true }
+                    }
+                  }
+                }
+              }
+            },
+            "responses": {
+              "200": {
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                          "message":{ "type": "string", "example": "Successful" },
+                          "data":{
+                              "type": "object",
+                              "properties": {
+                                "username": { "type": "string" }
+                              }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "400": {
+                "message": "string",
+                "error": "object"
+              }
+            }
+      
+          }
+        },
+      "/users/{id}":{
+        "get": {
+          "tags": ["User"],
+          "summary": "Get the user with the id in the system",
+          "operationId": "getUser",
+          "parameters":[{
+            "in":"path",
+            "name": "id",
+            "description": "ID of the user",
+            "type":"string",
+            "required":true
+          }],
+          "responses": {
+            "200": {
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                        "message":{ "type": "string", "example": "Successful" },
+                      "data":{
+
+                            "type": "object",
+                            "properties": {
+                              "username": { "type": "string" }
+                            }
+                          
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "message": "string",
+              "error": "object"
+            }
+          }
+        },
+        "put":{
+            "tags": ["User"],
+            "summary": "Update the user with the id in the system",
+            "operationId": "updateUser",
+            "requestBody": {
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "username": { "type": "string", "required":true }
+                    }
+                  }
+                }
+              }
+            },
+            "parameters":[{
+              "in":"path",
+              "name": "id",
+              "description": "ID of the user",
+              "type":"string",
+              "required":true
+            }],
+            "responses": {
+              "200": {
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                          "message":{ "type": "string", "example": "Successful" },
+                        "data":{
+  
+                              "type": "object",
+                              "properties": {
+                                "username": { "type": "string" }
+                              }
+                            
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "400": {
+                "message": "string",
+                "error": "object"
+              }
+            }
+        },
+        "delete":{
+          "tags": ["User"],
+          "summary": "Delete the user with the id in the system",
+          "operationId": "deleteUser",
+          "parameters":[{
+            "in":"path",
+            "name": "id",
+            "description": "ID of the user",
+            "type":"string",
+            "required":true
+          }],
+          "responses": {
+            "200": {
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                        "message":{ "type": "string", "example": "Successful" }      
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "message": "string",
+              "error": "object"
+            }
+          }
+      },
+      "/todos":{
+        "get": {
+          "tags": ["Todo"],
+          "summary": "Get all the todos in the system",
+          "operationId": "getAllTodos",
+          "responses": {
+            "200": {
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                        "message":{ "type": "string", "example": "Successful" },
+                      "data":{
+                          "type":"array",
+                          "items":{
+                            "type": "object",
+                            "properties": {
+                              "username": { "type": "string" },
+                              "todoName": { "type": "string" },
+                              "todoType": { "type": "string" },
+                              "dueDate": { "type": "date"},
+                              "isDone":{"type":"boolean"}
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+            "400": {
+              "message": "string",
+              "error": "object"
+            }
+          }
+        },
+        "post":{
+          "tags": ["Todo"],
+          "summary": "Create a new todo",
+          "operationId": "createTodo",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "username": { "type": "string","required":true,"example":"string"  },
+                    "todoName": { "type": "string","required":true ,"example":"string" },
+                    "todoType": { "type": "string","required":true,"example":"string" },
+                    "dueDate": { "type": "date","required":true, "example":"2020-12-12"}
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                        "message":{ "type": "string", "example": "Successful" },
+                        "data":{
+                          "type": "object",
+                          "properties": {
+                            "username": { "type": "string" },
+                            "todoName": { "type": "string" },
+                            "todoType": { "type": "string" },
+                            "dueDate": { "type": "date"},
+                            "isDone":{"type":"boolean"}
+                          }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "message": "string",
+              "error": "object"
+            }
+          }
+    
+        }
+      },
+      "/todos/{id}":{
+        "get": {
+          "tags": ["Todo"],
+          "summary": "Get the todo with the id in the system",
+          "operationId": "getTodo",
+          "parameters":[{
+            "in":"path",
+            "name": "id",
+            "description": "ID of the todo",
+            "type":"string",
+            "required":true
+          }],
+          "responses": {
+            "200": {
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                        "message":{ "type": "string", "example": "Successful" },
+                      "data":{
+                            "type": "object",
+                            "properties": {
+                              "username": { "type": "string" },
+                              "todoName": { "type": "string" },
+                              "todoType": { "type": "string" },
+                              "dueDate": { "type": "date"},
+                              "isDone":{"type":"boolean"}
+                            }
+                          
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "message": "string",
+              "error": "object"
+            }
+          }
+        },
+        "put":{
+            "tags": ["Todo"],
+            "summary": "Update the todo with the id in the system",
+            "operationId": "updateTodo",
+            "parameters":[{
+              "in":"path",
+              "name": "id",
+              "description": "ID of the todo",
+              "type":"string",
+              "required":true
+            }],
+            "requestBody": {
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "isDone": { "type": "boolean","required":true  }
+                    }
+                  }
+                }
+              }
+            },
+            "responses": {
+              "200": {
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                          "message":{ "type": "string", "example": "Successful" },
+                          "data":{
+                            "type": "object",
+                            "properties": {
+                              "username": { "type": "string" },
+                              "todoName": { "type": "string" },
+                              "todoType": { "type": "string" },
+                              "dueDate": { "type": "date"},
+                              "isDone":{"type":"boolean"}
+                            }
+                          
+                      }
+                      }
+                    }
+                  }
+                }
+              },
+              "400": {
+                "message": "string",
+                "error": "object"
+              }
+            }
+        },
+        "delete":{
+          "tags": ["Todo"],
+          "summary": "Delete the todo with the id in the system",
+          "operationId": "deleteTodo",
+          "parameters":[{
+            "in":"path",
+            "name": "id",
+            "description": "ID of the todo",
+            "type":"string",
+            "required":true
+          }],
+          "responses": {
+            "200": {
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                        "message":{ "type": "string", "example": "Successful" }      
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "message": "string",
+              "error": "object"
+            }
+          }
+      }
+    }
+  }
