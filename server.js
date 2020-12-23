@@ -24,7 +24,7 @@ const usersRouter = require('./routes/users');
 
 app.use('/todos', todoRouter);
 app.use('/users', usersRouter);
-app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use("/", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
